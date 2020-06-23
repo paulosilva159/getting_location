@@ -63,7 +63,7 @@ class Home2Page extends StatelessWidget {
             onPressed: () {
               Get.back();
             },
-            child: Text('firstPage'),
+            child: Text('go back'),
           ),
         ],
       ),
