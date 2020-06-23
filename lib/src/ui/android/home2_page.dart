@@ -1,7 +1,7 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:using_get/src/controllers/home_controller2.dart';
+import 'package:using_get/src/controllers/home2_controller.dart';
 import 'package:using_get/src/data/providers/appwrite_provider.dart';
 import 'package:using_get/src/data/repositories/locale_repository.dart';
 import 'package:using_get/personal.dart';
@@ -12,9 +12,9 @@ class Home2Page extends StatelessWidget {
       .setProject("$projectId")
       .setSelfSigned();
 
-  final HomeController2 controller = Get.put(HomeController2(
+  final Home2Controller controller = Get.put(Home2Controller(
       repository: LocaleRepository(
-          apiClient:
+          appwriteApiClient:
               AppwriteApiClient(client: client, locale: Locale(client)))));
 
   @override
@@ -37,8 +37,8 @@ class Home2Page extends StatelessWidget {
           ),
           Container(
             height: Get.height / 3,
-            child: GetBuilder<HomeController2>(
-                init: Get.find<HomeController2>(),
+            child: GetBuilder<Home2Controller>(
+                init: Get.find<Home2Controller>(),
                 initState: (state) {
                   controller.getCountriesCode();
                   controller.getCountriesName();
@@ -69,10 +69,16 @@ class Home2Page extends StatelessWidget {
             },
             child: Text('go back'),
           ),
+          RaisedButton(
+            onPressed: () {
+              Get.toNamed('/third');
+            },
+            child: Text('advance'),
+          ),
         ],
       ),
-      bottomNavigationBar: GetBuilder<HomeController2>(
-          init: Get.find<HomeController2>(),
+      bottomNavigationBar: GetBuilder<Home2Controller>(
+          init: Get.find<Home2Controller>(),
           builder: (_) {
             return BottomNavigationBar(
               onTap: (value) {

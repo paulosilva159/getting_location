@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
 
   final HomeController controller = HomeController(
       repository: LocaleRepository(
-          apiClient:
+          appwriteApiClient:
               AppwriteApiClient(client: client, locale: Locale(client))));
 
   @override
