@@ -11,6 +11,8 @@ Um projeto Flutter usando [GetX Pattern](https://kauemurakami.github.io/getx_pat
 
 ### O que o aplicativo faz?
 
+![](demonstration.gif)
+
 O aplicativo retorna uma lista de códigos e nomes de países usando o serviço Appwrite Locale e as gerências de estado de Get (Obx com RxController e GetBuilder com GetController) - A idéia inicial era usar o serviço Appwrite Locale e o package Geolocator para exemplificar o uso de providers no GetX Pattern, mas eu estava tendo problemas com o GPS do emulador. Como o uso do pattern é claro o suficiente neste exemplo, optei por usar apenas o serviço Locale. O usuário também pode filtrar a lista através de um TextField, que responderá com base em qual gerenciador de estado está sendo usado no momento. O aplicativo tem duas páginas Home e Home2 e duas guias cada (uma para códigos de países e outra para nomes de países). O filtro faz distinção entre maiúsculas e minúsculas, logo, se você colocar 'a' e 'A' depois disso, os resultados não serão os mesmos.
 
 ### Usando Obx (RxController)
@@ -44,6 +46,8 @@ A Flutter project using [GetX Pattern](https://kauemurakami.github.io/getx_patte
 4. **Why using GetController?**
 
 ### What the app does?
+
+![](demonstration.gif)
 
 The app returns a list of countries codes and names using Appwrite Locale service and both Get state managers (Obx with RxController and GetBuilder with GetController) - The initial idea was to use Appwrite Locale service and Geolocator package to exemplify the GetX Pattern use of Providers, but i was having problem with the emulator's GPS. As the pattern use is clear enough in this example, i've opted to use only Locale. The user can also filter the list through a TextField, which will respond based on which state manager is being used at the moment. It has two pages Home and Home2 and two tabs each (one for countries codes and another for countries names). The filter is case sensitive, so if you put 'a' and 'A' after that, the results with not be the same. 
 
