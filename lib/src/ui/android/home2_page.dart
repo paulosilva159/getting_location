@@ -48,7 +48,7 @@ class Home2Page extends StatelessWidget {
                       return FlatButton(
                           onPressed: () {},
                           child: Text(
-                              '${controller.currentIndex == 0 ? controller.countriesCode[index] : controller.countriesName[index]}'));
+                              '${_.currentIndex == 0 ? _.countriesCode[index] : _.countriesName[index]}'));
                     },
                   );
                 }),
