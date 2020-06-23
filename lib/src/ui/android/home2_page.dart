@@ -39,6 +39,10 @@ class Home2Page extends StatelessWidget {
             height: Get.height / 3,
             child: GetBuilder<HomeController2>(
                 init: Get.find<HomeController2>(),
+                initState: (state) {
+                  controller.getCountriesCode();
+                  controller.getCountriesName();
+                },
                 builder: (_) {
                   return ListView.builder(
                     itemCount: _.currentIndex == 0
