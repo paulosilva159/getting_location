@@ -7,28 +7,38 @@ Um projeto Flutter usando [GetX Pattern](https://kauemurakami.github.io/getx_pat
 1. **O que o aplicativo faz?**
 2. **Usando Obx (RxController)**
 3. **Usando GetBuilder (GetController)**
-4. **Por que usar GetController?**
+4. **Usando GetX (RxController)**
+5. **Por que usar GetController?**
+6. **Usando diferentes providers num mesmo repository**
 
 ### O que o aplicativo faz?
 
 ![](demonstration.gif)
 
-O aplicativo retorna uma lista de códigos e nomes de países usando o serviço Appwrite Locale e as gerências de estado de Get (Obx com RxController e GetBuilder com GetController) - A idéia inicial era usar o serviço Appwrite Locale e o package Geolocator para exemplificar o uso de providers no GetX Pattern, mas eu estava tendo problemas com o GPS do emulador. Como o uso do pattern é claro o suficiente neste exemplo, optei por usar apenas o serviço Locale. O usuário também pode filtrar a lista através de um TextField, que responderá com base em qual gerenciador de estado está sendo usado no momento. O aplicativo tem duas páginas Home e Home2 e duas guias cada (uma para códigos de países e outra para nomes de países). O filtro faz distinção entre maiúsculas e minúsculas, logo, se você colocar 'a' e 'A' depois disso, os resultados não serão os mesmos.
+O aplicativo retorna uma lista de códigos e nomes de países, assim como a sua própria localização, usando o serviço Appwrite Locale, o package Geolocator e as gerências de estado de Get (Obx e GetX com RxController e GetBuilder com GetController) - O usuário pode filtrar a lista de códigos ou países através de um TextField, que responderá com base em qual gerenciador de estado está sendo usado no momento. O aplicativo tem três páginas Home, Home2 e Address e duas guias cada (uma para códigos de países e outra para nomes de países), exceto Address. O filtro faz distinção entre maiúsculas e minúsculas, logo, se você colocar 'a' e 'A' depois disso, os resultados não serão os mesmos. A localização retorna apenas a cidade e o estado da pessoa, podendo retornar muito mais detalhes. 
 
 ### Usando Obx (RxController)
 
-A principal diferença entre Obx (ou GetX) e GetBuilder está no fato de que: GetBuilder (GetController) depende do uso do método update() para alterar o estado do widget, enquanto Obx (RxController) não. Neste exemplo, na primeira página, depois de colocar algo no filtro, a lista será alterada automaticamente para você. Você não precisa fazer mais nada. Em outras palavras, se você quiser algo **reativo**, algo que será "atualizado sozinho", use RxController e Obx (ou GetX). Eu usei a função onChanged no widget TextField para atualizar minhas variáveis de filtro e a lista, logo, no widget ListView.builder, a lista muda automaticamente. 
+A principal diferença entre Obx (ou GetX) e GetBuilder está no fato de que: GetBuilder (GetController) depende do uso do método update() para alterar o estado do widget, enquanto Obx/GetX (RxController) não. Neste exemplo, na primeira página, depois de colocar algo no filtro, a lista será alterada automaticamente para você. Você não precisa fazer mais nada. Em outras palavras, se você quiser algo **reativo**, algo que será "atualizado sozinho", use RxController e Obx (ou GetX). Eu usei a função onChanged no widget TextField para atualizar minhas variáveis de filtro e a lista, logo, no widget ListView.builder, a lista muda automaticamente. 
 
 ### Usando GetBuilder (GetController) 
 
 Quando você vai para a segunda página, a lista não se atualiza sozinha, é necessário pressionar o botão update, que possui o método update() do controller. Então, quando você pressiona o botão, a lista muda. Se você escrever algo no TextField, ele não será filtrado sozinho, você deverá pressionar o botão. 
 
 "Espera aí, os dois métodos para atualizar countriesCode e countriesName estão na função onChanged do widget TextField, por que não muda sozinho?" 
-Porque se você entrar no HomeController2, verá que o método update() está comentado, para que não funcione. Se você deseja que a segunda tela aja como a primeira, você precisará apenas "descomentar".
+Porque se você entrar no HomeController2, verá que não há o método update(), para que não funcione automaticamente. Se você deseja que a segunda tela aja como a primeira, você precisará apenas acrescentar o método.
 
-### Por que usar GetController?
+### Usando GetX (RxController)
+
+Quando você vai para a terceira página, ela irá perguntar para acessar a localização. Caso não esteja ligada, ligue-a. Após alguns segundos, a sua cidade e estado aparecerão na tela. Isso porque o GetX tem o parâmetro initState (assim como o GetBuilder e diferente do Obx), onde eu posso fazer com que coisas se carreguem assim que o widget GetX é carregado. Montei o exemplo para mostrar apenas cidade e estado, mas é fácil colocar para mostrar mais informações que foram obtidas pelo package Geolocator. 
+
+### Por quê usar GetController?
 
 Nesse cenário, a API Appwrite Locale não me custa nada. Estou livre para usá-la de graça! Mas, se não fosse grátis, eu teria que estar realmente consciente do seu uso. Neste exemplo, consumi mais de mil solicitações usando-o por 5 minutos, porque a função onChanged notifica cegamente qualquer "alteração" - mesmo que eu não escreva nada, ele notifica. Portanto, se 100 solicitações me custarem um dólar, com o GetController, eu teria que pagar apenas um dólar, porque fiz muito menos do que 100 cliques, quando com o RxController eu teria que pagar 10 dólares. Ou seja, GetController e GetBuilder são minha escolha de ouro, porque caso fosse um aplicativo a ser lançado no mercado, obviamente eu consumiria mais de 1000 requisições.
+
+### Usando diferentes providers num mesmo repository
+
+O GetX Pattern separa o provedor de dados do repositório de informações, pois é possível haver mais de um provedor para o mesmo respositório. Um exemplo bem trivial é caso você tenha que utilizar duas APIs para cumprir papéis semelhantes, você pode concentrar as duas num mesmo repositório e manter a lógica de separação lá, enquanto seu controller recebe apenas um repository e ficando apenas com os dados entregues pelo repositório direto, sem precisar carregar ainda mais o controller com lógica. Neste exemplo, os meus provedores de dados seriam tanto o package Geolocator como o serviço Locale do Appwrite. Funções semelhantes, porém distintas, sendo que é até possível obter alguns dados iguais em ambos os casos. 
 
 #### P.S.
 
@@ -43,28 +53,38 @@ A Flutter project using [GetX Pattern](https://kauemurakami.github.io/getx_patte
 1. **What the app does?**
 2. **Using Obx (RxController)**
 3. **Using GetBuilder (GetController)**
-4. **Why using GetController?**
+4. **Using GetX (RxController)**
+5. **Why use GetController?**
+6. **Using differents providers in a same repository**
 
 ### What the app does?
 
 ![](demonstration.gif)
 
-The app returns a list of countries codes and names using Appwrite Locale service and both Get state managers (Obx with RxController and GetBuilder with GetController) - The initial idea was to use Appwrite Locale service and Geolocator package to exemplify the GetX Pattern use of Providers, but i was having problem with the emulator's GPS. As the pattern use is clear enough in this example, i've opted to use only Locale. The user can also filter the list through a TextField, which will respond based on which state manager is being used at the moment. It has two pages Home and Home2 and two tabs each (one for countries codes and another for countries names). The filter is case sensitive, so if you put 'a' and 'A' after that, the results with not be the same. 
+The app returns a list of country codes and names, as well as your location itself, using the Appwrite Locale service, the Geolocator package and the Get state managers (Obx and GetX with RxController and GetBuilder with GetController) - The user can filter the list of codes or name of countries through a TextField, which will respond based on which state manager is currently being used. The application has three pages Home, Home2 and Address and two tabs each (one for country codes and one for country names), except Address. The filter is case-sensitive, so if you've put 'a' and after 'A', the results will not be the same. The location only returns the person's city and state, and can return much more details.
 
 ### Using Obx (RxController)
 
-The major difference between Obx(or GetX) and GetBuilder is in the fact that: GetBuilder(GetController) depends on the use of the update() method to change the widget's state, while Obx(RxController) don't. In this example, in the first page, once you've put something in the filter, the list will automatically change for you. You don't have to do nothing more. In other words, if you want something **reactive**, something that will "update alone", you use RxController and Obx(or GetX). I've used the onChanged function from the TextField widget to update my filter variables and the list, so in the ListView.builder widget, the list changes automatically.
+The major difference between Obx(or GetX) and GetBuilder is in the fact that: GetBuilder(GetController) depends on the use of the update() method to change the widget's state, while Obx/GetX(RxController) don't. In this example, in the first page, once you've put something in the filter, the list will automatically change for you. You don't have to do nothing more. In other words, if you want something **reactive**, something that will "update alone", you use RxController and Obx(or GetX). I've used the onChanged function from the TextField widget to update my filter variables and the list, so in the ListView.builder widget, the list changes automatically.
 
 ### Using GetBuilder (GetController) 
 
 When you go to the second page, the list will not update itself alone, you have to press the update button, who has the update() method from the controller. So when you press the button, the list will change. If you write something on the TextField, it will not filter itself alone, you have to press the button. 
 
 "But wait, both methods to update countriesCode and countriesName are on the onChanged function of the TextField widget, why it doesn't change alone?" 
-Because if you to HomeController2, you will see that the update() method are commented, so they don't work. If you want the second screen to act like the first, you only have to uncomment then.
+Because if you go to Home2Controller, you will see that there is no update(), so they don't work automatically. If you want the second screen to act like the first, you only have to add update().
+
+### Using GetX (RxController) 
+
+When you go to the third page, it will ask you to access your location. Turn it on in case it's off. After a few seconds, your locality/sub administrative area and administrative area will be displayed. It happens because GetX have the initState parameter (as GetBuilder and diferently from Obx), where i can load things once the GetX widget is loaded. I've built this example to show only locality/sub administrative area and administrative area, but it is easy to show more informations obtained by the Geolocator package. 
 
 ### Why using GetController?
 
 In this scenario, Appwrite Locale API doesn't cost me anything. I'm free to use it for free! But, if if wasn't, i'd have to be really conscious of its use. In this example, i've consumed more than one thousand requests using it for 5 minutes, because the onChanged function blindly notifies any "change" - even if i write nothing, it notifies. So, if 100 request cost me one dollar, with GetController i'd have to pay only one dollar, because i did way less than 100 clicks, when with RxController i'd have to pay 10 dollars. In other words, GetController and GetBuilder are my golden choice, because if it is an application launched on the market, obviously I will consume more than 1000 requests.
+
+### Using differents providers in a same repository
+
+The GetX Pattern separates the data provider from the information repository, as it is possible to have one more provider for the same repository. A very trivial example is the case where you use two APIs to perform similar parts. You can use both in one repositories and keep the storage logic there, while your controller receives only one repository and receives only the data delivered directly by the repository, without having to load further logic. In this example, my data providers can be both the package geolocator and the Appwrite Locale service. Similar but distinct functions, and it is even possible to obtain the same data in both providers.
 
 #### P.S.
 
