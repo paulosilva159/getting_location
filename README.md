@@ -17,7 +17,7 @@ Um projeto Flutter usando [GetX Pattern](https://kauemurakami.github.io/getx_pat
 
 O aplicativo retorna uma lista de códigos e nomes de países, assim como a sua própria localização, usando o serviço Appwrite Locale, o package Geolocator e as gerências de estado de Get (Obx e GetX com RxController e GetBuilder com GetController) - O usuário pode filtrar a lista de códigos ou países através de um TextField, que responderá com base em qual gerenciador de estado está sendo usado no momento. O aplicativo tem três páginas Home, Home2 e Address e duas guias cada (uma para códigos de países e outra para nomes de países), exceto Address. O filtro faz distinção entre maiúsculas e minúsculas, logo, se você colocar 'a' e 'A' depois disso, os resultados não serão os mesmos. A localização retorna apenas a cidade e o estado da pessoa, podendo retornar muito mais detalhes. 
 
-![address.gif]
+![](address.gif)
 
 ### Usando Obx (RxController)
 
