@@ -8,7 +8,7 @@ Um projeto Flutter usando [GetX Pattern](https://kauemurakami.github.io/getx_pat
 2. **Usando Obx (RxController)**
 3. **Usando GetBuilder (GetController)**
 4. **Usando GetX (RxController)**
-5. **Por que usar GetController?**
+5. **Por quê usar GetController?**
 6. **Usando diferentes providers num mesmo repository**
 
 ### O que o aplicativo faz?
@@ -16,6 +16,8 @@ Um projeto Flutter usando [GetX Pattern](https://kauemurakami.github.io/getx_pat
 ![](demonstration.gif)
 
 O aplicativo retorna uma lista de códigos e nomes de países, assim como a sua própria localização, usando o serviço Appwrite Locale, o package Geolocator e as gerências de estado de Get (Obx e GetX com RxController e GetBuilder com GetController) - O usuário pode filtrar a lista de códigos ou países através de um TextField, que responderá com base em qual gerenciador de estado está sendo usado no momento. O aplicativo tem três páginas Home, Home2 e Address e duas guias cada (uma para códigos de países e outra para nomes de países), exceto Address. O filtro faz distinção entre maiúsculas e minúsculas, logo, se você colocar 'a' e 'A' depois disso, os resultados não serão os mesmos. A localização retorna apenas a cidade e o estado da pessoa, podendo retornar muito mais detalhes. 
+
+![address.gif]
 
 ### Usando Obx (RxController)
 
@@ -42,7 +44,7 @@ O GetX Pattern separa o provedor de dados do repositório de informações, pois
 
 #### P.S.
 
-O GetBuilder e o GetX são muito semelhantes na sintaxe, por isso é válido comparar a sintaxe do GetX e do Obx usando o GetBuilder. Dito isto, optei por usar o Obx em vez do GetX, apenas porque o Obx - nesse caso - possui um código mais limpo do que teria se tivesse escrito com o GetX. Visto que o Obx não ordena que eu use Get.put() ou Get.find() para simplesmente usar um controlador fora do meu widget. Não há nem mesmo binding neste código. **E o que torna este caso, "este caso"?** Eu realmente uso muito meu controlador fora do widget Obx, por isso Obx é a minha escolha.
+O GetBuilder e o GetX são muito semelhantes na sintaxe, por isso é válido comparar a sintaxe do GetX e do Obx usando o GetBuilder. Dito isto, optei por usar o Obx na primeira página em vez do GetX, apenas porque o Obx - nesse caso - possui um código mais limpo do que teria se tivesse escrito com o GetX. Visto que o Obx não ordena que eu use Get.put() ou Get.find() para simplesmente usar um controlador fora do meu widget. Não há nem mesmo binding neste código. **E o que torna este caso, "este caso"?** Eu realmente uso muito meu controlador fora do widget Obx, por isso Obx é a minha escolha. Tanto que na terceira usei GetX, por praticamente não precisar usar o controller fora do widget GetX
 
 # GetX_Getting Location (English) 
 
@@ -62,6 +64,8 @@ A Flutter project using [GetX Pattern](https://kauemurakami.github.io/getx_patte
 ![](demonstration.gif)
 
 The app returns a list of country codes and names, as well as your location itself, using the Appwrite Locale service, the Geolocator package and the Get state managers (Obx and GetX with RxController and GetBuilder with GetController) - The user can filter the list of codes or name of countries through a TextField, which will respond based on which state manager is currently being used. The application has three pages Home, Home2 and Address and two tabs each (one for country codes and one for country names), except Address. The filter is case-sensitive, so if you've put 'a' and after 'A', the results will not be the same. The location only returns the person's city and state, and can return much more details.
+
+![](address.gif)
 
 ### Using Obx (RxController)
 
@@ -88,4 +92,4 @@ The GetX Pattern separates the data provider from the information repository, as
 
 #### P.S.
 
-GetBuilder and GetX are a lot similar in sintax, so it's valid to compare the sintax of GetX and Obx using GetBuilder's. That said, i've opted to use Obx instead of GetX just because Obx - in this case - have i way cleaner code than it would have if i've written it with GetX. Because Obx doesn't order me to use Get.put() or Get.find() to simply use one controller out of my widget. There isn't even binding in this code. **And what makes this case, "this case"?** I really use my controller a lot out of the Obx widget. Because of this, Obx is my choice.  
+GetBuilder and GetX are a lot similar in sintax, so it's valid to compare the sintax of GetX and Obx using GetBuilder's. That said, i've opted to use Obx in the first page instead of GetX just because Obx - in this case - have a way cleaner code than it would have if i've written it with GetX. Because Obx doesn't order me to use Get.put() or Get.find() to simply use one controller out of my widget. There isn't even binding in this code. **And what makes this case, "this case"?** I really use my controller a lot out of the Obx widget. Because of this, Obx is my choice. In the third page, my choice was GetX because i don't use the controller out GetX widget.
