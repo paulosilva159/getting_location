@@ -1,4 +1,4 @@
-# GetX_Getting Location (Português)
+# Getting Location (Português)
 
 Um projeto Flutter usando [GetX Pattern](https://kauemurakami.github.io/getx_pattern/?fbclid=IwAR1ejnKLnVZxJ9Diora2GI0ghEIIeKuvIjpmIUr2-QR1nZ_lf5UgQWzUjt4#home), [Get State Manager](https://pub.dev/packages/get) e [Appwrite](https://appwrite.io/) BAAS. 
 
@@ -46,7 +46,7 @@ O GetX Pattern separa o provedor de dados do repositório de informações, pois
 
 O GetBuilder e o GetX são muito semelhantes na sintaxe, por isso é válido comparar a sintaxe do GetX e do Obx usando o GetBuilder. Dito isto, optei por usar o Obx na primeira página em vez do GetX, apenas porque o Obx - nesse caso - possui um código mais limpo do que teria se tivesse escrito com o GetX. Visto que o Obx não ordena que eu use Get.put() ou Get.find() para simplesmente usar um controlador fora do meu widget. Não há nem mesmo binding neste código. **E o que torna este caso, "este caso"?** Eu realmente uso muito meu controlador fora do widget Obx, por isso Obx é a minha escolha. Tanto que na terceira usei GetX, por praticamente não precisar usar o controller fora do widget GetX
 
-# GetX_Getting Location (English) 
+# Getting Location (English) 
 
 A Flutter project using [GetX Pattern](https://kauemurakami.github.io/getx_pattern/?fbclid=IwAR1ejnKLnVZxJ9Diora2GI0ghEIIeKuvIjpmIUr2-QR1nZ_lf5UgQWzUjt4#home), [Get State Manager](https://pub.dev/packages/get) and [Appwrite](https://appwrite.io/) BAAS. 
 
